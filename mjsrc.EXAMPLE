@@ -1,0 +1,157 @@
+# Configuration file for Matt's MP3 Selector
+
+#
+# mpgpath: path to mpg123
+
+# mp3dir: path to the base mp3 directory
+
+# logfile: path to the file in which to save played mp3 titles
+
+# statefile: path to the file in which to save te playing mp3 title
+
+# resultsfile: path to the file we grab our searchresults from
+
+# playlistpath: path to the directory where we save our playlists
+
+# bottom_text: Text to show on the bottomline
+
+# playlist_advance: advance the playlist selection after adding a file?
+
+# file_advance: advance the file selection after selecting a file?
+
+# mono_output: Let mpg123 produce single channel (mono) output only.
+# show_playlist_length: Let mpg123 show not only the remaining time per
+# track but also to the end of the playlist (not really accurate yet)
+
+# alternative_scrolling: move the list instead of the selector
+
+# allow_playlist_saving: Allow saving of the playlist to a file
+
+# buffer: size of the buffer mpg123 uses (integer, in kb)
+# NOTE -- When using the buffer, mpg123 spawns a child process to buffer
+# itself. It seems to have some difficulties cleaning up this child when we
+# are trying to exit ourselves. Use at your own risk, and be sure to kill
+# off any orphan mpg123's because they go berserk on your cpu.
+
+# jump: how many frames to jump with +/-
+
+# loop: loop over the playlist when we get to the end?
+ 
+
+
+set mpgpath		/usr/local/bin/mpg123
+set mp3dir		/pub/mp3
+set logfile		/var/log/mp3log
+set statefile		/var/state/mp3actief
+set resultsfile		/tmp/findresults
+set playlistpath	/pub/mp3/- Playlists
+set bottomtext		MP3 Jukebox D.S.V. Nieuwe Delft - De Bolk   
+set buffer		4000
+set jump		100
+set playlist_advance		false
+set file_advance		true
+set loop			false
+set playlists_to_files		false
+set mono_output			false
+set show_playlist_length 	true
+set alternative_scrolling	false
+set allow_playlist_saving	true
+
+#
+# Colors
+# 
+# Background colors can be:
+#     black, red, green, brown, blue, magenta, cyan, grey
+# Foreground colors can, in addition to above, be:
+#     b_black, b_red, b_green, yellow, b_blue, b_magenta, b_cyan, white
+#
+color active            white:black
+color inactive 		grey:black
+color selected          b_black:grey
+color unselected	white:black
+color directory		grey:black
+color title		white:black
+color scroll            white:black
+color scroll_bar	grey:black
+color playlist		grey:black
+color playing           white:black
+color sel_playing	white:grey
+color file_back         black:black
+color info_back  	black:black
+color play_back		black:black
+color menu_back         white:grey 
+color menu_text		white:grey
+color arrows            yellow:blue
+color edit_back         yellow:blue
+color edit_active       white:black
+color edit_inactive     yellow:blue
+# not used, yet
+color edit_prompt	white:blue
+
+#
+# Window positions and sizes and formats (only used for 'list' type windows)
+#
+# Window format tokens:
+# 
+# %t - the song title
+# %a - the artist
+# %f - filename
+# %F - complete filename, incl path
+# %p - the path
+# %m - how many minutes?
+# %s - "remainder" seconds (fraction of minutes)
+# %S - total length in seconds
+# %T - time in format [%m:%s]
+# %g - genre
+# %% - like with printf, insert a %
+#
+# + - * / operators are ok. Use 'w' and 'h' for screen width and height.
+# A 0 for width/height will go from x/y to the max.
+#
+# Be careful here. Don't put spaces in expressions. Borders will take up
+# two spaces. If you screw up things can overlap and look ugly.
+#
+# title.format  = format string for the title (optional)
+# title.default = default title, if no formats apply (optional, has a default)
+#
+
+# file selection window
+files height	h-1
+files width	w/2
+files y		0
+files x		0
+files format	%t
+files title.default MP3  Files
+# info window
+info height	5
+info width	0
+info y		3
+info x		w/2
+info title.default MP3 Info
+# playlist window
+play height	h-8
+play width	0
+play y		7
+play x		w/2
+play format	%t %T
+play title.default Playlist
+play title.format Playlist
+# the playback window
+playback height	3
+playback width	0
+playback y	0
+playback x	w/2
+playback title.default Playback Info
+playback title.format %t
+# "menubar"
+menubar height	1
+menubar width	w
+menubar y	h-1
+menubar x	0
+# id3 edit box
+id3edit height	8
+id3edit width	50
+id3edit y	9
+id3edit x	15
+id3edit title.default ID3 Tag Editor
+id3edit title.format ID3 Tag Editor - %f
